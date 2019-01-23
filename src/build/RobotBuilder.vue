@@ -1,8 +1,6 @@
 <template>
-  <div>
-    <div class="content">
-      <button class="add-to-cart" @click="addToCart()">Add to cart</button>
-    </div>
+  <div class="content">
+    <button class="add-to-cart" @click="addToCart()">Add to cart</button>
 
     <div class="top-row">
       <div class="top part">
