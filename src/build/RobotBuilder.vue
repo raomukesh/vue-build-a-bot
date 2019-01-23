@@ -55,6 +55,7 @@
 
 <script>
     import availableParts from  "../data/parts.js"
+    import createdHookMixin from  "./created-hook-mixin.js"
 
     function getPreviousValueIndex(index, length){
       const depricatedIndex = index - 1;
@@ -68,9 +69,6 @@
 
     export default {
         name: 'RobotBuilder',
-        created(){
-          console.log('Component created');
-        },
         data() {
           return {
             cart: [],
@@ -82,6 +80,7 @@
             selectedBaseIndex: 0,
           }
         },
+        mixins: [createdHookMixin],
         computed: {
           saleBorderClass(){
             return this.selectedRobot.head.onSale ? 'sale-border' : ''
