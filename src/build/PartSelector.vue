@@ -1,5 +1,5 @@
 <template>
-  <div class="part">
+  <div class="part" :class="position">
     <img :src="selectedPart.src" title="arm"/>
     <button @click="selectPreviousPart()" class="prev-selector"></button>
     <button @click="selectNextPart()" class="next-selector"></button>
@@ -8,10 +8,6 @@
 </template>
 
 <script>
-import availableParts from '../data/parts';
-
-const parts = availableParts.heads;
-
 function getPreviousValidIndex(index, length) {
   const deprecatedIndex = index - 1;
   return deprecatedIndex < 0 ? length - 1 : deprecatedIndex;
@@ -23,29 +19,30 @@ function getNextValidIndex(index, length) {
 }
 
 export default {
-  data() {
-    return { selectedPartIndex: 0 };
-  },
-  computed: {
-    selectedPart() {
-      return parts[this.selectedPartIndex];
+    props: ['parts', 'position'],
+    data() {
+        return { selectedPartIndex: 0 };
     },
-  },
-  methods: {
-    selectNextPart() {
-      this.selectedPartIndex = getNextValidIndex(
-        this.selectedPartIndex,
-        parts.length,
-      );
+    computed: {
+        selectedPart() {
+        return this.parts[this.selectedPartIndex];
+        },
     },
-    selectPreviousPart() {
-      this.selectedPartIndex = getPreviousValidIndex(
-        this.selectedPartIndex,
-        parts.length,
-      );
-    },
+    methods: {
+        selectNextPart() {
+        this.selectedPartIndex = getNextValidIndex(
+            this.selectedPartIndex,
+            this.parts.length,
+        );
+        },
+        selectPreviousPart() {
+        this.selectedPartIndex = getPreviousValidIndex(
+            this.selectedPartIndex,
+            this.parts.length,
+        );
+        },
 
-  },
+    },
 };
 
 </script>
