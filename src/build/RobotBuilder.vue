@@ -48,19 +48,6 @@
       <PartSelector :parts="availableParts.bases" position="bottom"
         @partSelected="part => selectedRobot.base = part" />
     </div>
-
-    <div>
-      <table>
-        <tr>
-          <th>Robot</th>
-          <th>Cost</th>
-        </tr>
-        <tr v-for="(robot, index) in cart" :key="index">
-          <td>{{robot.head.title}}</td>
-          <td class="cost">{{robot.cost}}</td>
-        </tr>
-      </table>
-    </div>
   </div>
 </template>
 
@@ -233,14 +220,6 @@
   width: 210px;
   padding: 3px;
   font-size: 16px;
-}
-td, th{
-  text-align: left;
-  padding: 5px;
-  padding-right: 20px;
-}
-.cost{
-  text-align: right
 }
 .sale-border{
   border: 2px solid red;
