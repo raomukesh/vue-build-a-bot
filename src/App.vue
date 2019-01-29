@@ -45,31 +45,31 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
+
 export default {
   name: 'app',
   computed: {
-      rootFoo() {
-        return this.$store.state.foo;
-      },
-      robotsFoo() {
-        return this.$store.state.robots.foo;
-      },
-      usersFoo() {
-        return this.$store.state.users.foo;
-      },      
-      rootGetterFoo() {
-        return this.$store.getters.foo;
-      },    
-      robotsGetterFoo() {
-        return this.$store.getters['robots/foo'];
-      },    
-      usersGetterFoo() {
-        return this.$store.getters['users/foo'];
-      },
+    //...mapState(['foo']),                             // Use this if we have Arrays
+    ...mapState({
+      rootFoo: 'foo',
+      usersFoo: state => state.users.foo,
+    }),
+    ...mapState('robots', { robotsFoo: 'foo' }),        // This syntax is only used for namespaced modules
+     
+    rootGetterFoo() {
+      return this.$store.getters.foo;
+    },    
+    robotsGetterFoo() {
+      return this.$store.getters['robots/foo'];
+    },    
+    usersGetterFoo() {
+      return this.$store.getters['users/foo'];
+    },
 
-      cart() {
-          return this.$store.state.robots.cart; 
-      }
+    cart() {
+        return this.$store.state.robots.cart; 
+    }
   },
 };
 </script>
