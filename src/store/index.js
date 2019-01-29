@@ -1,5 +1,6 @@
 import Vue from "vue";
 import Vuex from "vuex";
+import axios from "axios";
 
 Vue.use(Vuex);
 
@@ -10,6 +11,7 @@ export default new Vuex.Store({
         state object */
     state: {
         cart: [],
+        parts: null,
     },
     /* All changes to data in a store must happen through a mutation. 
         You can't just access the store's state directly and 
@@ -17,6 +19,16 @@ export default new Vuex.Store({
     mutations: {
         addRobotToCart(state, robot){   // First parameter of mutation is state.
             state.cart.push(robot);
+        },
+        updateParts(state, parts){
+            state.parts = parts;
+        },
+    },
+    actions: {
+        getParts({ commit }) {
+            axios.get('/api/parts')
+                .then(result => commit('updateParts', result.data))
+                .catch(console.error);
         },
     },
     getters: {
