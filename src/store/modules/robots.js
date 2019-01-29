@@ -1,6 +1,8 @@
 import axios from "axios";
 
 export default {
+    namespaced: true,
+
     /* The state object is where we'll store all of our data.
     Everything that you're going to store in the state,
     you need to add a default property for it here in the 
@@ -9,6 +11,7 @@ export default {
         cart: [],
         parts: null,
     },
+
     /* All changes to data in a store must happen through a mutation. 
         You can't just access the store's state directly and 
         start changing data. All changes must go through a mutation. */
@@ -20,6 +23,7 @@ export default {
             state.parts = parts;
         },
     },
+
     actions: {
         getParts({ commit }) {
             axios.get('/api/parts')
@@ -32,6 +36,7 @@ export default {
                 .then(() => commit('addRobotToCart', robot));
         },
     },
+
     getters: {
         cartSaleItems(state){
             return state.cart.filter(item => item.head.onSale);
