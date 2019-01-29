@@ -10,6 +10,7 @@ export default {
     state: {
         cart: [],
         parts: null,
+        foo: 'robots-foo',
     },
 
     /* All changes to data in a store must happen through a mutation. 
@@ -38,8 +39,11 @@ export default {
     },
 
     getters: {
-        cartSaleItems(state){
+        cartSaleItems(state) {
             return state.cart.filter(item => item.head.onSale);
+        },
+        foo(state) {
+            return `robots-getter/${state.foo}`;
         }
     },
 }
